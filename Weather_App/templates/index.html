@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather App</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #9be15d, #00e3ae);
+            text-align: center;
+            padding-top: 60px;
+        }
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            display: inline-block;
+            box-shadow: 0 0 10px gray;
+        }
+        input {
+            padding: 10px;
+            width: 250px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>🌍 Weather App (No API Key)</h2>
+        <form method="POST">
+            <input type="text" name="city" placeholder="Enter City Name" required>
+            <br><br>
+            <button type="submit">Check Weather</button>
+        </form>
+
+        {% if weather %}
+            <h3>📍 {{ weather.location }}</h3>
+            <p>🌡 Temperature: {{ weather.temp_C }} °C</p>
+            <p>🌦 Condition: {{ weather.desc }}</p>
+            <p>💧 Humidity: {{ weather.humidity }}%</p>
+            <p>🌬 Wind Speed: {{ weather.wind_kmph }} km/h</p>
+        {% endif %}
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
